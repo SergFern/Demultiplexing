@@ -1,0 +1,6 @@
+#!/bin/bash
+
+java -Xmx4g -jar $PICARD SamToFastq \
+	INPUT=$1 \
+	FASTQ=$2 \
+	INTERLEAVE=true
