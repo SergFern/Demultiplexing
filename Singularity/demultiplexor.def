@@ -31,15 +31,15 @@ OSVersion: xenial
 	apt-get install -y alien
 
 
-
 # ##################### bcl2fastq2 #######################################
 
-%apprun bcl2fastq2
-	/usr/local/bin/bcl2fastq2 "$@"
+%apprun bcl2fast
+	/usr/local/bin/bcl2fast "$@"
 
-%appinstall bcl2fastq2
-	wget https://github.com/SergFern/Demultiplexing/raw/master/bcl2fastq2-v2.18.0.12-Linux-x86_64.rpm -P /usr/local/bin/
-	alien /usr/local/bin/bcl2fastq2-v2.18.0.12-Linux-x86_64.rpm
+%appinstall bcl2fast
+	wget https://github.com/SergFern/Demultiplexing/raw/master/bcl2fastq2-v2.18.0.12-Linux-x86_64.rpm -P /home/bioinfo
+	alien /home/bioinfo/bcl2fastq2-v2.18.0.12-Linux-x86_64.rpm
+	dpkg -i /home/bioinfo/bcl2fastq2_0v2.18.0.12-2_amd64.deb
 
 # ####################################################################
 
