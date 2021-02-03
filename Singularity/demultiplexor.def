@@ -33,8 +33,8 @@ OSVersion: xenial
 
 # ##################### bcl2fastq2 #######################################
 
-%apprun bcl2fast
-	/usr/local/bin/bcl2fast "$@"
+%apprun bcl2fastq
+	bcl2fastq "$@"
 
 %appinstall bcl2fast
 	wget https://github.com/SergFern/Demultiplexing/raw/master/bcl2fastq2-v2.18.0.12-Linux-x86_64.rpm -P /home/bioinfo
