@@ -16,7 +16,7 @@ OSVersion: xenial
     apt-get -y update
     apt-get -y install locales curl bzip2 less unzip libncurses5-dev zlib1g-dev libgsl0-dev libssl-dev libbz2-dev liblzma-dev wget git autoconf build-essential manpages-dev openjdk-8-jre python python3.6 python3-pip r-base-core pkg-config libcurl4-openssl-dev libxml2-dev r-base r-base-dev
 
-    mkdir /data-store
+    mkdir /data_store
 
 # ###################### ALIEN #######################################
 
@@ -28,14 +28,14 @@ OSVersion: xenial
 
 
 
-# ##################### bcl2fast #######################################
+# ##################### bcl2fastq2 #######################################
 
 %apprun bcl2fastq2
-	usr/local/bin/bcl2fast "$@"
+	/usr/local/bin/bcl2fastq2 "$@"
 
-%appinstall bcl2fast2
-	wget https://github.com/SergFern/Demultiplexing/raw/master/bcl2fastq2-v2.18.0.12-Linux-x86_64.rpm
-	alien bcl2fastq2-v2.18.0.12-Linux-x86_64.rpm
+%appinstall bcl2fastq2
+	wget https://github.com/SergFern/Demultiplexing/raw/master/bcl2fastq2-v2.18.0.12-Linux-x86_64.rpm -P /usr/local/bin/
+	alien /usr/local/bin/bcl2fastq2-v2.18.0.12-Linux-x86_64.rpm
 
 # ####################################################################
 
