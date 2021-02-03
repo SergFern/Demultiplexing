@@ -38,8 +38,9 @@ OSVersion: xenial
 
 %appinstall bcl2fast
 	wget https://github.com/SergFern/Demultiplexing/raw/master/bcl2fastq2-v2.18.0.12-Linux-x86_64.rpm -P /home/bioinfo
-	alien /home/bioinfo/bcl2fastq2-v2.18.0.12-Linux-x86_64.rpm
-	dpkg -i /home/bioinfo/bcl2fastq2_0v2.18.0.12-2_amd64.deb
+	cd /home/bioinfo
+	alien --to-deb bcl2fastq2-v2.18.0.12-Linux-x86_64.rpm
+	dpkg -i bcl2fastq2_0v2.18.0.12-2_amd64.deb
 
 # ####################################################################
 
