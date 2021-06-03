@@ -7,7 +7,7 @@ D E M U L T I P L E X E R  - I R Y C I S    v 0.1
 ================================================================
 input_directory        : $params.data
 barcodes_output        : $params.outdir/params.barcodes_out
-plarform               : $params.platform
+platform               : $params.platform
 
 ================================================================
 """

@@ -18,7 +18,7 @@ SEQUENCING_CENTER="TruSeq"
 
 
 
-java -Xmx8g -jar $PICARD IlluminaBasecallsToSam \
+java -Xmx4G -jar $PICARD IlluminaBasecallsToSam \
 		BASECALLS_DIR=$BASECALLS_DIR \
 		BARCODES_DIR=$BARCODES_DIR \
 		LANE=$LANE \

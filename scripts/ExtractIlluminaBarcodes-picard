@@ -11,7 +11,7 @@ lane=$4
 barcodes_output_dir=$5
 barcodes_metrics=$6
 
-java -Xmx8g -jar $PICARD ExtractIlluminaBarcodes \
+java -Xmx4G -jar $PICARD ExtractIlluminaBarcodes \
 		BASECALLS_DIR=$inputBCL_dir \
 		BARCODE_FILE=$barcodeFile \
 		READ_STRUCTURE=$read_structure \
