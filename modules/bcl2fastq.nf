@@ -4,7 +4,8 @@ nextflow.enable.dsl=2
 
 process BCL2FASTQ {
     publishDir = "results"
-
+    label 'basic_proc'
+    
     input:
         path data
     output:
