@@ -49,7 +49,7 @@ D E M U L T I P L E X E R  - I R Y C I S    v 0.9
 ================================================================
 inputBCLdir             : $params.inputBCLdir
 output                  : $params.output
-demultiplexing_threads  : $params.demult_threads
+demultiplexing_threads  : $params.demultiplexing_threads
 UMI                     : $params.UMI
 ================================================================
 """
