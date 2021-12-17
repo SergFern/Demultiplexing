@@ -12,7 +12,7 @@ process BCL2FASTQ {
         file('*')
     script:
         """
-        bcl2fastq --runfolder-dir $data -d $params.demult_threads -p $params.demult_threads --output-dir $params.output 2> bcl2fastq.log
+        bcl2fastq --runfolder-dir $data -d $params.demultiplexing_threads -p $params.demultiplexing_threads --output-dir $params.output 2> bcl2fastq.log
         """
 }
 
