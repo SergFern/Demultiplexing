@@ -12,12 +12,12 @@ barcodes_output_dir=$5
 barcodes_metrics=$6
 
 gatk ExtractIlluminaBarcodes \
-		--BASECALLS_DIR $inputBCL_dir \
-		--BARCODE_FILE $barcodeFile \
-		--READ_STRUCTURE $read_structure \
-		--LANE $lane \
-		--OUTPUT_DIR $barcodes_output_dir \
-		--METRICS_FILE $barcodes_metrics
+	--BASECALLS_DIR $inputBCL_dir \
+	--BARCODE_FILE $barcodeFile \
+	--READ_STRUCTURE $read_structure \
+	--LANE $lane \
+	--OUTPUT_DIR $barcodes_output_dir \
+	--METRICS_FILE $barcodes_metrics
 
 
 

@@ -8,9 +8,9 @@ Description
 
 Mandatory arguments to long options are mandatory for short options too.
 
-  -short_option, --long_option	description
-      --help        display this help and exit
-      --version     display version information and exit
+-short_option, --long_option	description
+	--help        display this help and exit
+	--version     display version information and exit
 
 With no FILE read standard input.
 
@@ -21,7 +21,7 @@ case $1 in
 --version) exec echo "$version";;
 esac
 
- ~/Demultiplexing/scripts/ExtractIlluminaBarcodes-picard /media/bioinfo/TOSHIBA_EXT/200609_M03698_0018_000000000-D7K8R/Data/Intensities/BaseCalls ./data/BARCODE_FILE.csv "251T8B9M8B251T" 1 ./data/Demultiplexing_out ./data/Demultiplexing_out/metrics_out.txt
+	~/Demultiplexing/scripts/ExtractIlluminaBarcodes-picard /media/bioinfo/TOSHIBA_EXT/200609_M03698_0018_000000000-D7K8R/Data/Intensities/BaseCalls ./data/BARCODE_FILE.csv "251T8B9M8B251T" 1 ./data/Demultiplexing_out ./data/Demultiplexing_out/metrics_out.txt
 
 ~/Demultiplexing/scripts/IlluminaBasecallsToSam /media/bioinfo/TOSHIBA_EXT/200609_M03698_0018_000000000-D7K8R/Data/Intensities/BaseCalls /media/bioinfo/TOSHIBA_EXT/200609_M03698_0018_000000000-D7K8R/Data/Intensities/BaseCalls/data/Demultiplexing_out 1 "251T8B9M8B251T" "Run_KitL_" ./data/library.params /media/bioinfo/TOSHIBA_EXT/200609_M03698_0018_000000000-D7K8R/Data/Intensities/BaseCalls/tmp_dir
 
