@@ -18,7 +18,7 @@ def helpMessage() {
     --inputBCLdir [DIR]             Base directory with sequenced data.
     --output [DIR]                  Default path to output fastq files.
     --demultiplexing_threads [INT]  Threads assigned to demultiplexing process.
-    --UMI [BOOL]                    Execute demultiplexing with UMIs command.
+    --UMI [BOOL]                    Execute demultiplexing with UMIs command. default: false
 
     if UMI is true
 

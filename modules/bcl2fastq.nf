@@ -11,11 +11,11 @@ process BCL2FASTQ {
     output:
         file('*')
     script:
-        if($params.UMI == false){
+        if(params.UMI == false){
         """
         bcl2fastq --runfolder-dir $data -d $params.demultiplexing_threads -p $params.demultiplexing_threads --output-dir $params.output 2> bcl2fastq.log
         """
-        }else if($params.UMI == true){
+        }else if(params.UMI == true){
         """
         bcl2fastq --runfolder-dir $data -d $params.demultiplexing_threads -p $params.demultiplexing_threads --output-dir $params.output --with-failed-reads --mask-short-adapter-reads 0 --use-bases-mask Y*,I$params.IndexSize,Y$params.UMISize,Y* 2> bcl2fastq.log
         """
