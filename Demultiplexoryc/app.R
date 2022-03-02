@@ -41,9 +41,9 @@ ui <- fluidPage(
                   sliderInput('UMIsize', 'Longitud del UMI', value = 10, min = 1, max = 20),
                   sliderInput("IndexSize", "Longitud del Index", value = 8, min = 1, max = 20))
               ),
-         
+        wellPanel(fluidRow( 
         column(2, actionButton('upload', label = 'Subir y Demultiplexar')),
-        column(6, textInput('email', 'Notificar por email (no funciona aun)')),
+        column(6, textInput('email', 'Notificar por email (no funciona aun)')))),
         br(),
         wellPanel(actionButton('debug', label = 'debug'))
         )
