@@ -147,15 +147,17 @@ server <- function(input, output) {
     execute_main <- function(){
         
         command <- paste(
-            '../scripts/server_demultiplexing.sh',
+            'nohup ./scripts/server_demultiplexing.sh',
             carrera(),
             nombre_carrera(),
             input$UMI,
             input$UMIsize,
-            input$IndexSize)
+            input$IndexSize,
+            '&>/dev/null')
         # print('script going on')
         print(paste0('Executing command: ',command, sep = 0))
-        system(command = command)
+        system(command = command, intern = FALSE, wait = FALSE)
+        print(paste0('Command launched'))
         return()
     }
     
