@@ -63,6 +63,8 @@ server <- function(input, output) {
         return(str_c('/mnt/NAS',str_c(input$carrera$path, collapse = '/')))}else{return('Enter valid path')}
         })
     
+    nombre_carrera <- reactive({str_remove(carrera(),paste0(dirname(carrera()),'/'))})
+    
     # carrera <- reactive({
     #     if(is.list(input$carrera[1])){
     #     return(str_c('/media',str_c(input$carrera$path, collapse = '/')))}else{return('Enter valid path')}
