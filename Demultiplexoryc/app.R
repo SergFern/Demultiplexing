@@ -9,6 +9,7 @@
 
 library(shiny)
 library(shinyFiles)
+library(tidyverse)
 
 # Define UI for application that draws a histogram
 ui <- fluidPage(
@@ -97,7 +98,7 @@ server <- function(input, output) {
     
     Check_sample_sheet <- reactive({
 
-        if(input$CheckSampleSheet == FALSE && input$samplesheet[1] == 0){
+        if(input$CheckSampleSheet == FALSE && is.null(input$samplesheet)){
         
             showModal(modalDialog(
                 fluidPage(
@@ -106,7 +107,7 @@ server <- function(input, output) {
                     fluidRow(column(4,offset = 4,
                                     div(style='max-width:150px;max-height:150px;width:3%;height:5%;', 
                                         img(src="caution-icon.png", height='150', width='150', align="middle")))),
-                    h2(paste("La SampleSheet es requerida para lanzar el demultiplexada." ,sep = ''), align = 'center'),
+                    h2(paste("La SampleSheet es requerida para lanzar el demultiplexado." ,sep = ''), align = 'center'),
                     easyClose = TRUE,
                     footer = NULL
                 )))
@@ -116,52 +117,32 @@ server <- function(input, output) {
 
     })
     
-    nombre_carrera <- reactive({str_remove(carrera(),paste0(dirname(carrera()),'/'))})
+    Overwite_samplesheet <- function(){
+            
+            showModal(modalDialog(
+                fluidPage(
+                    h1(strong("Warning"),align="center"),
+                    hr(),
+                    fluidRow(column(4,offset = 4,
+                                    div(style='max-width:150px;max-height:150px;width:3%;height:5%;', 
+                                        img(src="caution-icon.png", height='150', width='150', align="middle")))),
+                    h2(paste("Esta carrera ya contiene una SampleSheet, desea sobreescribirla?." ,sep = ''), align = 'center'),
+                    fluidRow(
+                        column(2),
+                        actionButton('sobreescribir_ss_si', 'Si', icon = icon('file-import')),
+                        actionButton('sobreescribir_ss_cancel', 'Calcelar subida', icon = icon('ban')),
+                        actionButton('sobreescribir_ss_continue', 'Continuar subida', icon = icon('arrow-right')))),
+                easyClose = FALSE,
+                footer = NULL
+            ))
+        return()
+    }
     
-    observeEvent(input$sobreescribir_ss,{
-        #Overwrites existing samplesheet.
-        file.copy(input$samplesheet$datapath, paste0(carrera(),'/SampleSheet.csv'), overwrite = TRUE)
-        
-    })
+    #######################################################.
+    ###################### MAIN function ##################
+    #######################################################.
     
-    observeEvent(input$upload,{
-        # withProgress(
-        
-        #Execute script for uploading data.
-        #Execute script for demultiplexing data.
-        #Execute script for bringing back data.
-        
-        if(Check_sample_sheet() == FALSE){
-            return()
-        }
-        
-        if(Check_path_integrity() == FALSE){
-            return()
-        }else{
-            
-            if(input$CheckSampleSheet == FALSE && input$samplesheet[1] != 0){
-                # This means samplesheet is being introduced through the app. We
-                # need to copy it into the runs directory.
-            
-            
-                if(file.copy(input$samplesheet$datapath, paste0(carrera(),'/SampleSheet.csv')) == FALSE){
-                    
-                    showModal(modalDialog(
-                        fluidPage(
-                            h1(strong("Warning"),align="center"),
-                            hr(),
-                            fluidRow(column(4,offset = 4,
-                                            div(style='max-width:150px;max-height:150px;width:3%;height:5%;', 
-                                                img(src="caution-icon.png", height='150', width='150', align="middle")))),
-                            h2(paste("Esta carrera ya contiene una SampleSheet, desea sobreescribirla?." ,sep = ''), align = 'center'),
-                            actionButton('sobreescribir_ss', 'Si', icon = 'file-import'),
-                            easyClose = TRUE,
-                            footer = NULL
-                        )))
-                }
-            }
-        }
-        
+    execute_main <- function(){
         
         command <- paste(
             '../scripts/server_demultiplexing.sh',
@@ -170,11 +151,69 @@ server <- function(input, output) {
             input$UMI,
             input$UMIsize,
             input$IndexSize)
-        
+        # print('script going on')
+        print(paste0('Executing command: ',command, sep = 0))
         system(command = command)
-        # )
+        return()
+    }
+    
+    #######################################################.
+    ###################### UPLOAD #########################
+    #######################################################.
+    
+    observeEvent(input$upload,{
+        
+        # withProgress(?
+        
+        if(!Check_path_integrity()){
+            return()
+        }
+        
+        if(!Check_sample_sheet()){# Checks case there is samplesheet input or samplesheet present.
+            return()
+        }
+        
+        if(input$CheckSampleSheet){execute_main()} # Execute main right away it the SS is already provided
+            
+        if(!input$CheckSampleSheet && input$samplesheet[1] != 0){
+            # This means samplesheet is being introduced through the app. We
+            # need to copy it into the runs directory.
+            if(file.copy(input$samplesheet$datapath, paste0(carrera(),'/SampleSheet.csv')) == FALSE){
+                #Case the is a SS already present despite introducing a new one.
+                Overwite_samplesheet() # Shows popup modalMenu
+            }else{execute_main()} # Si no hay samplesheet en la carrera de destino que se ejecute el programa.
+        }
         
     })
+##########################################################################.
+############ ObserveEvents for Modal menu por SS overwrite ###############
+##########################################################################.
+    
+    observeEvent(input$sobreescribir_ss_cancel, {
+        removeModal()
+        checks$sobreescribir <- 'CANCEL'
+        return()
+    })
+    
+    observeEvent(input$sobreescribir_ss_continue, {
+        removeModal()
+        checks$sobreescribir <- FALSE
+        execute_main()
+        return()
+    })
+    
+    observeEvent(input$sobreescribir_ss_si,{
+        #Overwrites existing samplesheet.
+        file.copy(input$samplesheet$datapath, paste0(carrera(),'/SampleSheet.csv'), overwrite = TRUE)
+        removeModal()
+        checks$sobreescribir <- TRUE
+        execute_main()
+        return()
+    })
+    
+    ##########################################################################.
+    ######################### Debugger #########
+    ##########################################################################.
     
     observeEvent(input$debug, {browser()})
     
