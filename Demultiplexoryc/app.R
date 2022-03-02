@@ -42,8 +42,10 @@ ui <- fluidPage(
                   sliderInput("IndexSize", "Longitud del Index", value = 8, min = 1, max = 20))
               ),
          
-          wellPanel(actionButton('upload', label = 'Subir y Demultiplexar')),
-          wellPanel(actionButton('debug', label = 'debug'))
+        column(2, actionButton('upload', label = 'Subir y Demultiplexar')),
+        column(6, textInput('email', 'Notificar por email (no funciona aun)')),
+        br(),
+        wellPanel(actionButton('debug', label = 'debug'))
         )
     )
 
@@ -140,6 +142,22 @@ server <- function(input, output) {
         return()
     }
     
+    Inform_correct_launch <- function(){
+        
+        showModal(modalDialog(
+            fluidPage(
+                h1(strong("Success"),align="center"),
+                hr(),
+                fluidRow(column(4,offset = 4,
+                                div(style='max-width:150px;max-height:150px;width:3%;height:5%;', 
+                                    img(src="success.png", height='150', width='150', align="middle")))),
+                h2(paste("Carrera lanzada con exito. Los resultados seran subidos a synology en una hora aproximadamente." ,sep = ''), align = 'center')),
+            easyClose = TRUE,
+            footer = NULL
+        ))
+        return()
+    }
+    
     #######################################################.
     ###################### MAIN function ##################
     #######################################################.
@@ -157,7 +175,7 @@ server <- function(input, output) {
         # print('script going on')
         print(paste0('Executing command: ',command, sep = 0))
         system(command = command, intern = FALSE, wait = FALSE)
-        print(paste0('Command launched'))
+        Inform_correct_launch()
         return()
     }
     
