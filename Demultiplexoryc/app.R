@@ -51,15 +51,28 @@ ui <- fluidPage(
 server <- function(input, output) {
     
     options( shiny.maxRequestSize = 1000 * 1024 ^ 2 )
+    checks <- reactiveValues()
+    checks$sobreescribir <- NULL
     
-    shinyDirChoose(input, id = 'carrera', roots=c(carreras='/home/sergio'), filetypes=c(''))
+    shinyDirChoose(input, id = 'carrera', roots=c(carreras='/mnt/NAS'), filetypes=c(''))
+    # shinyDirChoose(input, id = 'carrera', roots=c(carreras='/media'), filetypes=c(''))
     
     carrera <- reactive({
         if(is.list(input$carrera[1])){
-        return(str_c('/home/sergio/carreras',str_c(input$carrera$path, collapse = '/')))}else{return('Enter valid path')}
+        return(str_c('/mnt/NAS',str_c(input$carrera$path, collapse = '/')))}else{return('Enter valid path')}
         })
     
+    # carrera <- reactive({
+    #     if(is.list(input$carrera[1])){
+    #     return(str_c('/media',str_c(input$carrera$path, collapse = '/')))}else{return('Enter valid path')}
+    #     })
+    
     output$path_carrera <- renderText({carrera()})
+
+    #############################################################.
+    ######################## Modal popups designs ##################
+    #############################################################.
+    
     
     Check_path_integrity <- reactive({
         
@@ -72,7 +85,7 @@ server <- function(input, output) {
                     fluidRow(column(4,offset = 4,
                                     div(style='max-width:150px;max-height:150px;width:3%;height:5%;', 
                                         img(src="caution-icon.png", height='150', width='150', align="middle")))),
-                    h2(paste("No se puede encontrar la carpeta. Asegurese que la direccion no contiene espacios." ,sep = ''), align = 'center'),
+                    h2(paste("No se puede encontrar la carpeta. Asegurese que la direccion esta bien introducida y no contiene espacios." ,sep = ''), align = 'center'),
                     easyClose = TRUE,
                     footer = NULL
                 )))
