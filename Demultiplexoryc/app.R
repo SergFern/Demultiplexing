@@ -151,12 +151,15 @@ server <- function(input, output) {
                 fluidRow(column(4,offset = 4,
                                 div(style='max-width:150px;max-height:150px;width:3%;height:5%;', 
                                     img(src="success.png", height='150', width='150', align="middle")))),
-                h2(paste("Carrera lanzada con exito. Los resultados seran subidos a synology en una hora aproximadamente." ,sep = ''), align = 'center')),
+                h2(paste("Carrera lanzada con exito. Los resultados seran subidos a synology en una hora aproximadamente. Si ha proporcionado un email se le notificara a esa direccion.",
+                         sep = ''), align = 'center'),
+            h4(paste("Porfavor compruebe la carpeta de spam" ,sep = ''), align = 'center')),
             easyClose = TRUE,
             footer = NULL
         ))
         return()
     }
+
     
     #######################################################.
     ###################### MAIN function ##################
