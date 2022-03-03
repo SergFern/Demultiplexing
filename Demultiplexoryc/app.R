@@ -171,6 +171,7 @@ server <- function(input, output) {
             input$UMI,
             input$UMIsize,
             input$IndexSize,
+            input$email,
             '&>/dev/null')
         # print('script going on')
         print(paste0('Executing command: ',command, sep = 0))
