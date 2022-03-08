@@ -67,6 +67,16 @@ server <- function(input, output) {
     
     nombre_carrera <- reactive({str_remove(carrera(),paste0(dirname(carrera()),'/'))})
     
+    email <- reactive({
+
+        if(str_detect(input$email, pattern = '@')){
+            return(input$email)
+        }else{#Not valid email
+            return('sergio.fern1994@gmail.com')    
+        }
+
+    })
+    # 
     # carrera <- reactive({
     #     if(is.list(input$carrera[1])){
     #     return(str_c('/media',str_c(input$carrera$path, collapse = '/')))}else{return('Enter valid path')}
@@ -174,7 +184,7 @@ server <- function(input, output) {
             input$UMI,
             input$UMIsize,
             input$IndexSize,
-            input$email,
+            email(),
             '&>/dev/null')
         # print('script going on')
         print(paste0('Executing command: ',command, sep = 0))
