@@ -11,3 +11,4 @@ Demultiplexing.Rproj
 scripts/execute_demultiplexing.sh
 scripts/server_demultiplexing.sh
 .RData
+pipelines/
