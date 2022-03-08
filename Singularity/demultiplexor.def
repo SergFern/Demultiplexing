@@ -24,7 +24,7 @@ OSVersion: xenial
 
 # ###################### ALIEN #######################################
 
-%apprun minimap
+%apprun alien
 	exec alien "$@"
 
 %appinstall alien
