@@ -3,15 +3,15 @@ Demultiplexador para datos de secuenciación usando nexrflow como gestor de pipe
 
 # Requerimientos
 
-## Nextflow:
+## Nextflow
 
 https://www.nextflow.io/docs/latest/getstarted.html#installation
 
-## Singularity:
+## Singularity
 
 https://sylabs.io/guides/3.0/user-guide/installation.html
 
-# Instalación:
+# Instalación
 
 Para instalar debemos de clonar el repositorio.
 ```
