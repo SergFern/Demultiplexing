@@ -33,6 +33,7 @@ OSVersion: focal
 	update-locale LANG=es_ES.UTF-8
 
     mkdir /data_store
+    mkdir /genetica
 
 # ###################### ALIEN #######################################
 
