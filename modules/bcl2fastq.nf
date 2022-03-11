@@ -27,5 +27,4 @@ bcl2fastq -h 2> bclfastq.help
 echo $data >> bclfastq.help
 echo $params.demult_threads >> bclfastq.help
 echo $params.output >> bclfastq.help
-// TODO: is the trial the same as the backup? - no, why?
 */
