@@ -11,7 +11,7 @@ def helpMessage() {
 
     Usage:
     The typical command for running the pipeline is as follows:
-    ./nextflow_GenomeMapper.nf [OPTIONS]
+    ./nextflow_demultiplexing.nf [OPTIONS]
 
     Options:
 
