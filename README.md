@@ -24,13 +24,14 @@ Para printear los parámetros y sus opciones:
 ```
 nextflow nextflow_demultiplexing --help
 ```
-```================================================================
+```
+================================================================
 D E M U L T I P L E X E R  - I R Y C I S    v 0.9
 ================================================================
 
    Usage:
    The typical command for running the pipeline is as follows:
-   ./nextflow_GenomeMapper.nf [OPTIONS]
+   ./nextflow_demultiplexing.nf [OPTIONS]
 
    Options:
 
