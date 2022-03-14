@@ -6,12 +6,12 @@ def helpMessage() {
     log.info"""
 
 	================================================================
-	D E M U L T I P L E X E R  - I R Y C I S    v 0.9
+	D E M U L T I P L E X E R  - I R Y C I S    v 1
 	================================================================
 
     Usage:
     The typical command for running the pipeline is as follows:
-    ./nextflow_GenomeMapper.nf [OPTIONS]
+    ./nextflow_demultiplexing.nf [OPTIONS]
 
     Options:
 
@@ -51,6 +51,7 @@ inputBCLdir             : $params.inputBCLdir
 output                  : $params.output
 demultiplexing_threads  : $params.demultiplexing_threads
 UMI                     : $params.UMI
+email notification      : $params.email
 ================================================================
 """
 
@@ -59,4 +60,23 @@ include { BCL2FASTQ as bcl2fastq } from './modules/bcl2fastq'
 workflow {
   data = channel.fromPath(params.inputBCLdir, type: 'dir', checkIfExists: true)
   bcl2fastq(data)
+}
+
+workflow.onComplete {
+  
+    def carrera = """${params.inputBCLdir}"""
+    def email = """${params.email}"""
+    def subject = """Demultiplexado + ${carrera}"""
+
+    def msg = """\
+        Resumen de ejecución de demultiplexado
+        ---------------------------
+        Run         : ${carrera}
+        Completed at: ${workflow.complete}
+        Duration    : ${workflow.duration}
+        Success     : ${workflow.success}
+        """
+        .stripIndent()
+
+    sendMail(to: email, subject: subject, body: msg)
 }
