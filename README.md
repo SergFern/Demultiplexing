@@ -9,7 +9,18 @@ https://www.nextflow.io/docs/latest/getstarted.html#installation
 
 ## Singularity
 
+La aplicación que utiliza el pipeline se ejecuta a través de un contenedor en singularity. Evitando así que la posibilidad de una actualización de paquetes dependientes afecten a la ejecución del programa.
+
+### Instalación singularity
 https://sylabs.io/guides/3.0/user-guide/installation.html
+
+### Contenedor demultiplexor.sif
+
+Para crear el contenedor podemos utilizar el siguiente comando:
+```
+sudo singularity build Demultiplexor.sif ./Singularity/demultiplexor.def
+```
+Alternativamente podemos utilizar un contenedor pregenerado.
 
 # Instalación
 
