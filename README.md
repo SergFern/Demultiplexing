@@ -1,5 +1,5 @@
 # Demultiplexing
-Demultiplexador para datos de secuenciación usando nexrflow como gestor de pipelines.
+Demultiplexador para datos de secuenciación usando nextflow como gestor de pipelines.
 
 # Requerimientos
 
@@ -20,7 +20,7 @@ clone git@github.com:SergFern/Demultiplexing.git
 
 # Ejecución
 
-Para printear los parámetros y sus opciones:
+Para consultar los parámetros y sus opciones:
 ```
 nextflow nextflow_demultiplexing --help
 ```
