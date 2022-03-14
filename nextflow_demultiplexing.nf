@@ -66,7 +66,7 @@ workflow.onComplete {
   
     def carrera = """${params.inputBCLdir}"""
     def email = """${params.email}"""
-    def subject = """Demultiplexado + ${carrera}"""
+    def subject = """Demultiplexado ${carrera}"""
 
     def msg = """\
         Resumen de ejecucion de demultiplexado
