@@ -69,7 +69,7 @@ workflow.onComplete {
     def subject = """Demultiplexado + ${carrera}"""
 
     def msg = """\
-        Resumen de ejecución de demultiplexado
+        Resumen de ejecucion de demultiplexado
         ---------------------------
         Run         : ${carrera}
         Completed at: ${workflow.complete}
