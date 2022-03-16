@@ -71,15 +71,17 @@ Para ejecutar el demultiplexado para UMIs:
 nextflow nextflow_demultiplexing --inputBCLdir ['path/to/run'] --UMI true --IndexSize 8 --UMISize 10 --email ['email@address'] -profile cmag
 ```
 
-## Output
+### Output
 
 El output de la demultiplexación es por defecto el subdirectorio "`inputBCLdir`/Data/Intensities/Basecalls". Puede ser alterado añadiendo la opción `--output` a la línea de ejecución.
 
-### Configuración
+## Configuración
 
-El archivo nextflow.config contiene los valores de los parámetros por defecto, además de definir los perfiles de las distintas máquinas que pueden ejecutar este pipeline, local, clusterRyC, cmag.
+El archivo ```nextflow.config``` contiene los valores de los parámetros por defecto, además de definir los perfiles de las distintas máquinas que pueden ejecutar este pipeline: standard (ejecución local RyC), cluster (del RyC) y cmag.
 
 El perfíl del cmag está pendiente de confirmar su funcionamiento de manera que es todavía preliminar.
+
+Si se quiere ejecutar de manera "local" los parametros del perfil standard serían lo que posiblemente tendrían que modificarse.
 
 # Notas
 
