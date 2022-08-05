@@ -18,7 +18,8 @@ def helpMessage() {
     --inputBCLdir [DIR]             Base directory with sequenced data.
     --output [DIR]                  Default path to output fastq files.
     --demultiplexing_threads [INT]  Threads assigned to demultiplexing process.
-    --UMI [BOOL]                    Execute demultiplexing with UMIs command. default: false
+    --UMI [STR]                     Execute demultiplexing with UMIs command, if "custom" will use --barcode to override standard --IndexSize and --UMISize. default: false
+    --barcode [STR]                 Custom index and umi arrangement ex: Y*,I9,Y8,I9,Y*
 
     if UMI is true
 
@@ -33,7 +34,7 @@ def helpMessage() {
 }
 
 /*
-TODO: Consider setting the whole indexSize,UmiSize arrangement in a variable: ex. params.barcode = Y*,I8,Y10,Y*
+TODO: Consider setting the whole indexSize,UmiSize arrangement in a variable: ex. params.barcode = "Y*,I8,Y10,Y*"
 */
 
 // Show help message if --help specified

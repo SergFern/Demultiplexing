@@ -19,6 +19,10 @@ process BCL2FASTQ {
         """
         bcl2fastq --runfolder-dir $data -d $params.demultiplexing_threads -p $params.demultiplexing_threads --output-dir $params.output --with-failed-reads --mask-short-adapter-reads 0 --use-bases-mask Y*,I$params.IndexSize,Y$params.UMISize,Y* 2> bcl2fastq.log
         """
+        }else if(params.UMI == "custom"){
+        """
+        bcl2fastq --runfolder-dir $data -d $params.demultiplexing_threads -p $params.demultiplexing_threads --output-dir $params.output --with-failed-reads --mask-short-adapter-reads 0 --use-bases-mask $params.barcode 2> bcl2fastq.log
+        """
         }
 }
 
